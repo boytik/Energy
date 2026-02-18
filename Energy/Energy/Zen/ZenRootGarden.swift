@@ -603,15 +603,15 @@ struct ZenRootGarden: View {
         VStack(spacing: 6) {
             Text("c10 — Energy Route")
                 .font(.system(size: 14, weight: .medium, design: .rounded))
-                .foregroundColor(VitalPalette.zenAshWhisper)
+                .foregroundColor(.white)
             
             Text("Plan by energy, not by clock")
                 .font(.system(size: 12, design: .rounded))
-                .foregroundColor(VitalPalette.zenSilentStone)
+                .foregroundColor(.white)
             
             Text("v1.0")
                 .font(.system(size: 11, design: .rounded))
-                .foregroundColor(VitalPalette.zenSilentStone)
+                .foregroundColor(.white)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)

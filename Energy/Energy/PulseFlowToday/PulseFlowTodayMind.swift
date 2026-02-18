@@ -1,34 +1,20 @@
+
+
 import SwiftUI
 import Combine
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MARK: - 🧠 PulseFlowTodayMind — Today Screen ViewModel
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//
-// Drives the main "Today" tab:
-//   - Day plan with active variant
-//   - Spots grouped by zone (Morning / Daytime / Evening)
-//   - Real-time budget & overload tracking
-//   - Add / edit / delete / move spots
-//   - Mode switching (Light / Normal / Intense)
-//   - Fix suggestions & variant creation
-//   - Undo support
-//   - XP rewards for actions
-//
-// View file: PulseFlowTodayCanvas.swift
 
 final class PulseFlowTodayMind: ObservableObject {
     
     // ── Dependencies ──
     private let vault: VitalVault
     private var cancellables = Set<AnyCancellable>()
+    private var hasLoadedToday = false
     
     // ── Published State ──
     @Published var dayPlan: RhythmDayBlueprint?
     @Published var activeVariant: HavenVariantSeed?
     @Published var config: ZenConfigBlueprint
     
-    // Computed from active variant
     @Published var morningSpots: [SpotCapsule] = []
     @Published var daytimeSpots: [SpotCapsule] = []
     @Published var eveningSpots: [SpotCapsule] = []
@@ -41,13 +27,17 @@ final class PulseFlowTodayMind: ObservableObject {
     @Published var insight: CoreInsightCapsule?
     @Published var densityWarning: CoreOverloadEngine.DensityWarning?
     
-    // UI state
+    // UI
     @Published var showAddSpotSheet = false
     @Published var showOverloadSheet = false
     @Published var showVariantsSheet = false
     @Published var selectedSpotForEdit: SpotCapsule?
     @Published var showUndoToast = false
     @Published var undoMessage = ""
+    
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // MARK: – Computed
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     
     var dayKey: String {
         dayPlan?.localDayKey ?? RhythmDayBlueprint.dayKey(from: Date())
@@ -83,32 +73,35 @@ final class PulseFlowTodayMind: ObservableObject {
         self.vault = vault
         self.config = vault.state.config
         
-        // Observe vault changes
         vault.$state
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 self?.refreshFromState(state)
             }
             .store(in: &cancellables)
-        
-        // Initial load
-        loadToday()
     }
     
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // MARK: – Load & Refresh
+    // MARK: – Bootstrap (вызывать из View.task)
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     
+    @MainActor
     func loadToday() {
+        guard !hasLoadedToday else { return }
+        hasLoadedToday = true
+        
         _ = vault.ensureTodayPlan()
         refreshFromState(vault.state)
-        
-        // Record active day for streak
         vault.recordActiveDay()
     }
     
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // MARK: – Refresh
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
     private func refreshFromState(_ state: VitalAppState) {
         config = state.config
+        
         let todayKey = RhythmDayBlueprint.dayKey(from: Date())
         dayPlan = state.dayPlans.first { $0.localDayKey == todayKey }
         activeVariant = dayPlan?.activeVariant
@@ -118,18 +111,15 @@ final class PulseFlowTodayMind: ObservableObject {
             return
         }
         
-        // Update zone spots
         morningSpots = variant.spotsIn(zone: .morning)
         daytimeSpots = variant.spotsIn(zone: .daytime)
         eveningSpots = variant.spotsIn(zone: .evening)
         
-        // Compute summaries
         daySummary = CoreOverloadEngine.daySummary(variant: variant, config: config)
         morningSummary = CoreOverloadEngine.zoneSummary(variant: variant, zone: .morning, config: config)
         daytimeSummary = CoreOverloadEngine.zoneSummary(variant: variant, zone: .daytime, config: config)
         eveningSummary = CoreOverloadEngine.zoneSummary(variant: variant, zone: .evening, config: config)
         
-        // Full insight with suggestions
         insight = CoreOverloadEngine.analyze(variant: variant, config: config)
         densityWarning = CoreOverloadEngine.densityCheck(variant: variant, config: config)
     }

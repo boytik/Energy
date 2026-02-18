@@ -404,7 +404,7 @@ struct SparkJourneyPortal: View {
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(
                         mind.canGoNext
-                        ? VitalPalette.glowZincSunrise
+                        ? .black
                         : VitalPalette.zenSilentStone
                     )
                     .padding(.horizontal, 20)
@@ -412,7 +412,7 @@ struct SparkJourneyPortal: View {
                     .background(
                         Capsule().fill(
                             mind.canGoNext
-                            ? VitalPalette.zenJetStone
+                            ? VitalPalette.surgeXPGold
                             : VitalPalette.zenJetStone.opacity(0.3)
                         )
                     )
@@ -450,12 +450,12 @@ private struct WelcomeFeatureCard: View {
         HStack(spacing: 16) {
             ZStack {
                 Circle()
-                    .fill(VitalPalette.zenJetStone)
+                    .fill(VitalPalette.surgeXPGold)
                     .frame(width: 44, height: 44)
                 
                 Image(systemName: feature.icon)
                     .font(.system(size: 18, weight: .medium))
-                    .foregroundColor(VitalPalette.glowZincSunrise)
+                    .foregroundColor(.black)
             }
             
             VStack(alignment: .leading, spacing: 4) {

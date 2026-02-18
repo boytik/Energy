@@ -19,6 +19,9 @@ struct VitalHubShell: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            GoldBlackGradientBackground()
+                .ignoresSafeArea()
+            
             // ── Standard TabView with native tab bar ──
             TabView(selection: $selectedTab) {
                 PulseFlowTodayCanvas()
@@ -100,7 +103,7 @@ struct VitalHubShell: View {
             .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(VitalPalette.driftSnowField)
+                    .fill(VitalPalette.driftFogVeil)
                     .shadow(color: VitalPalette.surgeXPGold.opacity(0.3), radius: 12, x: 0, y: 4)
             )
             .overlay(
@@ -150,13 +153,19 @@ struct VitalHubShell: View {
             appearance.configureWithDefaultBackground()
         } else {
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor(red: 0.957, green: 0.961, blue: 0.965, alpha: 1.0) // driftSnowField
+            appearance.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0) // dark surface
         }
         
+        appearance.stackedLayoutAppearance.normal.iconColor = UIColor(red: 0.55, green: 0.55, blue: 0.57, alpha: 1.0)
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(red: 0.55, green: 0.55, blue: 0.57, alpha: 1.0)]
         appearance.stackedLayoutAppearance.selected.iconColor = selectedColor
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: selectedColor]
+        appearance.inlineLayoutAppearance.normal.iconColor = UIColor(red: 0.55, green: 0.55, blue: 0.57, alpha: 1.0)
+        appearance.inlineLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(red: 0.55, green: 0.55, blue: 0.57, alpha: 1.0)]
         appearance.inlineLayoutAppearance.selected.iconColor = selectedColor
         appearance.inlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: selectedColor]
+        appearance.compactInlineLayoutAppearance.normal.iconColor = UIColor(red: 0.55, green: 0.55, blue: 0.57, alpha: 1.0)
+        appearance.compactInlineLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(red: 0.55, green: 0.55, blue: 0.57, alpha: 1.0)]
         appearance.compactInlineLayoutAppearance.selected.iconColor = selectedColor
         appearance.compactInlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: selectedColor]
         

@@ -18,7 +18,7 @@ struct VitalInsightsCanvas: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                DriftGlowAtmosphere(preset: .sparkField)
+                GoldBlackGradientBackground()
                     .ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {
@@ -49,6 +49,7 @@ struct VitalInsightsCanvas: View {
                     }
                     .padding(.top, 8)
                 }
+                .scrollContentBackground(.hidden)
             }
             .navigationTitle("Insights")
             .navigationBarTitleDisplayMode(.large)

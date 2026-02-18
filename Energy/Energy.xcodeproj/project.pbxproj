@@ -24,6 +24,7 @@
 		3EBCC3EE2F45CEA100CD7D45 /* VitalVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3ED2F45CEA100CD7D45 /* VitalVault.swift */; };
 		3EBCC3F02F45CEFC00CD7D45 /* CoreOverloadEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3EF2F45CEFC00CD7D45 /* CoreOverloadEngine.swift */; };
 		3EBCC3F32F45CF6500CD7D45 /* DriftGlowAtmosphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3F22F45CF6500CD7D45 /* DriftGlowAtmosphere.swift */; };
+		3EBCC4A02F4600000CD7D45 /* GoldBlackGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */; };
 		3EBCC3F52F45CFDF00CD7D45 /* AuraSplashGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3F42F45CFDF00CD7D45 /* AuraSplashGateway.swift */; };
 		3EBCC3FA2F45D14400CD7D45 /* VitalHubShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3F92F45D14400CD7D45 /* VitalHubShell.swift */; };
 		3EBCC3FD2F45D18800CD7D45 /* SparkJourneyPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3FC2F45D18800CD7D45 /* SparkJourneyPortal.swift */; };
@@ -56,6 +57,7 @@
 		3EBCC3ED2F45CEA100CD7D45 /* VitalVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalVault.swift; sourceTree = "<group>"; };
 		3EBCC3EF2F45CEFC00CD7D45 /* CoreOverloadEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreOverloadEngine.swift; sourceTree = "<group>"; };
 		3EBCC3F22F45CF6500CD7D45 /* DriftGlowAtmosphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftGlowAtmosphere.swift; sourceTree = "<group>"; };
+		3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldBlackGradientBackground.swift; sourceTree = "<group>"; };
 		3EBCC3F42F45CFDF00CD7D45 /* AuraSplashGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraSplashGateway.swift; sourceTree = "<group>"; };
 		3EBCC3F92F45D14400CD7D45 /* VitalHubShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalHubShell.swift; sourceTree = "<group>"; };
 		3EBCC3FB2F45D18800CD7D45 /* SparkJourneyMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkJourneyMind.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				3EBCC3F22F45CF6500CD7D45 /* DriftGlowAtmosphere.swift */,
+				3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */,
 			);
 			path = BackGround;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				3EBCC3F02F45CEFC00CD7D45 /* CoreOverloadEngine.swift in Sources */,
 				3EBCC3E52F45CE5000CD7D45 /* BloomStatsCapsule.swift in Sources */,
 				3EBCC3F32F45CF6500CD7D45 /* DriftGlowAtmosphere.swift in Sources */,
+				3EBCC4A02F4600000CD7D45 /* GoldBlackGradientBackground.swift in Sources */,
 				3EBCC3D92F45CDE300CD7D45 /* SpotCapsule.swift in Sources */,
 				3EBCC3FA2F45D14400CD7D45 /* VitalHubShell.swift in Sources */,
 			);

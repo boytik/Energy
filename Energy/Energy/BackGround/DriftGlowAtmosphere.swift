@@ -52,33 +52,33 @@ enum AtmospherePreset: Equatable {
         switch self {
         case .sunrise:
             return [
-                UIColor(red: 0.961, green: 0.859, blue: 0.263, alpha: 1.0),  // glowZincSunrise
-                UIColor(red: 0.973, green: 0.918, blue: 0.557, alpha: 1.0),  // glowSoftMorning
-                UIColor(red: 0.980, green: 0.941, blue: 0.710, alpha: 1.0),  // glowWarmDawn
+                UIColor(red: 0.18, green: 0.15, blue: 0.08, alpha: 1.0),   // dark warm
+                UIColor(red: 0.14, green: 0.12, blue: 0.10, alpha: 1.0),
+                UIColor(red: 0.12, green: 0.10, blue: 0.08, alpha: 1.0),
             ]
         case .moonGarden:
             return [
-                UIColor(red: 0.910, green: 0.918, blue: 0.922, alpha: 1.0),  // driftFogVeil
-                UIColor(red: 0.812, green: 0.796, blue: 0.878, alpha: 1.0),  // rhythmEveningDusk
-                UIColor(red: 0.910, green: 0.918, blue: 0.922, alpha: 1.0),  // driftFogVeil
+                UIColor(red: 0.12, green: 0.11, blue: 0.14, alpha: 1.0),  // dark lavender
+                UIColor(red: 0.10, green: 0.09, blue: 0.12, alpha: 1.0),
+                UIColor(red: 0.12, green: 0.11, blue: 0.14, alpha: 1.0),
             ]
         case .zenStone:
             return [
-                UIColor(red: 0.957, green: 0.961, blue: 0.965, alpha: 1.0),  // driftSnowField
-                UIColor(red: 0.910, green: 0.918, blue: 0.922, alpha: 1.0),  // driftFogVeil
-                UIColor(red: 0.957, green: 0.961, blue: 0.965, alpha: 1.0),  // driftSnowField
+                UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0),   // dark neutral
+                UIColor(red: 0.14, green: 0.14, blue: 0.15, alpha: 1.0),
+                UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0),
             ]
         case .sparkField:
             return [
-                UIColor(red: 0.980, green: 0.941, blue: 0.710, alpha: 1.0),  // glowWarmDawn
-                UIColor(red: 0.945, green: 0.835, blue: 0.725, alpha: 1.0),  // rhythmMorningPeach
-                UIColor(red: 0.980, green: 0.941, blue: 0.710, alpha: 1.0),  // glowWarmDawn
+                UIColor(red: 0.16, green: 0.12, blue: 0.10, alpha: 1.0),  // dark peach
+                UIColor(red: 0.14, green: 0.10, blue: 0.08, alpha: 1.0),
+                UIColor(red: 0.16, green: 0.12, blue: 0.10, alpha: 1.0),
             ]
         case .auraGateway:
             return [
-                UIColor(red: 0.961, green: 0.859, blue: 0.263, alpha: 1.0),  // glowZincSunrise
-                UIColor(red: 0.855, green: 0.729, blue: 0.235, alpha: 1.0),  // surgeXPGold
-                UIColor(red: 0.973, green: 0.918, blue: 0.557, alpha: 1.0),  // glowSoftMorning
+                UIColor(red: 0.18, green: 0.14, blue: 0.06, alpha: 1.0),  // dark golden
+                UIColor(red: 0.14, green: 0.11, blue: 0.05, alpha: 1.0),
+                UIColor(red: 0.16, green: 0.13, blue: 0.08, alpha: 1.0),
             ]
         }
     }
@@ -87,44 +87,44 @@ enum AtmospherePreset: Equatable {
         switch self {
         case .sunrise:
             return [
-                UIColor(red: 0.980, green: 0.941, blue: 0.710, alpha: 1.0),
-                UIColor(red: 0.961, green: 0.859, blue: 0.263, alpha: 1.0),
-                UIColor(red: 0.973, green: 0.918, blue: 0.557, alpha: 1.0),
+                UIColor(red: 0.14, green: 0.12, blue: 0.10, alpha: 1.0),
+                UIColor(red: 0.16, green: 0.13, blue: 0.08, alpha: 1.0),
+                UIColor(red: 0.12, green: 0.10, blue: 0.08, alpha: 1.0),
             ]
         case .moonGarden:
             return [
-                UIColor(red: 0.812, green: 0.796, blue: 0.878, alpha: 1.0),
-                UIColor(red: 0.957, green: 0.961, blue: 0.965, alpha: 1.0),
-                UIColor(red: 0.812, green: 0.796, blue: 0.878, alpha: 1.0),
+                UIColor(red: 0.10, green: 0.09, blue: 0.12, alpha: 1.0),
+                UIColor(red: 0.12, green: 0.11, blue: 0.14, alpha: 1.0),
+                UIColor(red: 0.10, green: 0.09, blue: 0.12, alpha: 1.0),
             ]
         case .zenStone:
             return [
-                UIColor(red: 0.910, green: 0.918, blue: 0.922, alpha: 1.0),
-                UIColor(red: 0.957, green: 0.961, blue: 0.965, alpha: 1.0),
-                UIColor(red: 0.749, green: 0.761, blue: 0.765, alpha: 0.3),
+                UIColor(red: 0.14, green: 0.14, blue: 0.15, alpha: 1.0),
+                UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0),
+                UIColor(red: 0.18, green: 0.18, blue: 0.19, alpha: 0.5),
             ]
         case .sparkField:
             return [
-                UIColor(red: 0.945, green: 0.835, blue: 0.725, alpha: 1.0),
-                UIColor(red: 0.980, green: 0.941, blue: 0.710, alpha: 1.0),
-                UIColor(red: 0.945, green: 0.835, blue: 0.725, alpha: 1.0),
+                UIColor(red: 0.14, green: 0.10, blue: 0.08, alpha: 1.0),
+                UIColor(red: 0.16, green: 0.12, blue: 0.10, alpha: 1.0),
+                UIColor(red: 0.14, green: 0.10, blue: 0.08, alpha: 1.0),
             ]
         case .auraGateway:
             return [
-                UIColor(red: 0.973, green: 0.918, blue: 0.557, alpha: 1.0),
-                UIColor(red: 0.961, green: 0.859, blue: 0.263, alpha: 1.0),
-                UIColor(red: 0.855, green: 0.729, blue: 0.235, alpha: 1.0),
+                UIColor(red: 0.16, green: 0.13, blue: 0.08, alpha: 1.0),
+                UIColor(red: 0.18, green: 0.14, blue: 0.06, alpha: 1.0),
+                UIColor(red: 0.14, green: 0.11, blue: 0.05, alpha: 1.0),
             ]
         }
     }
     
     var particleColor: UIColor {
         switch self {
-        case .sunrise:     return UIColor.white.withAlphaComponent(0.25)
+        case .sunrise:     return UIColor(red: 0.855, green: 0.729, blue: 0.235, alpha: 0.12)
         case .moonGarden:  return UIColor(red: 0.533, green: 0.420, blue: 0.620, alpha: 0.15)
-        case .zenStone:    return UIColor.black.withAlphaComponent(0.04)
-        case .sparkField:  return UIColor.white.withAlphaComponent(0.3)
-        case .auraGateway: return UIColor.white.withAlphaComponent(0.35)
+        case .zenStone:    return UIColor.white.withAlphaComponent(0.06)
+        case .sparkField:  return UIColor(red: 0.945, green: 0.835, blue: 0.725, alpha: 0.1)
+        case .auraGateway: return UIColor(red: 0.855, green: 0.729, blue: 0.235, alpha: 0.15)
         }
     }
     

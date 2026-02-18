@@ -20,7 +20,7 @@ struct BloomJournalGallery: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                DriftGlowAtmosphere(preset: .moonGarden)
+                GoldBlackGradientBackground()
                     .ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {
@@ -47,6 +47,7 @@ struct BloomJournalGallery: View {
                     }
                     .padding(.top, 8)
                 }
+                .scrollContentBackground(.hidden)
             }
             .navigationTitle("Days")
             .navigationBarTitleDisplayMode(.large)
@@ -196,14 +197,14 @@ struct BloomJournalGallery: View {
             }
             .frame(height: 36)
             .frame(maxWidth: .infinity)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(
-                        item.isToday
-                        ? VitalPalette.zenJetStone
-                        : Color.clear
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(
+                                item.isToday
+                                ? VitalPalette.chipSelectedBg
+                                : Color.clear
+                            )
                     )
-            )
         }
         .buttonStyle(.plain)
         .disabled(!item.isCurrentMonth || item.dayKey.isEmpty)
@@ -412,7 +413,7 @@ struct BloomDayRow: View {
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
                             .background(
-                                Capsule().fill(VitalPalette.zenJetStone)
+                                Capsule().fill(VitalPalette.chipSelectedBg)
                             )
                     }
                 }
@@ -770,7 +771,7 @@ struct BloomDayDetailSheet: View {
                             .padding(.vertical, 14)
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .fill(VitalPalette.zenJetStone)
+                                    .fill(VitalPalette.chipSelectedBg)
                             )
                         }
                         .padding(.horizontal, 20)

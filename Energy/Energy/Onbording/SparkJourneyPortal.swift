@@ -21,9 +21,7 @@ struct SparkJourneyPortal: View {
     
     var body: some View {
         ZStack {
-            // ── Animated Background ──
-            DriftGlowAtmosphere(preset: .auraGateway)
-                .ignoresSafeArea()
+            // ── Background from VitalFlowRoot (gold-black gradient) ──
             
             VStack(spacing: 0) {
                 // ── Progress Bar ──
@@ -614,12 +612,12 @@ struct ChipButton: View {
         Button(action: action) {
             Text(title)
                 .font(.system(size: 14, weight: .medium, design: .rounded))
-                .foregroundColor(isSelected ? VitalPalette.glowZincSunrise : VitalPalette.zenCharcoalDepth)
+                .foregroundColor(isSelected ? Color(red: 0.08, green: 0.06, blue: 0.04) : VitalPalette.zenCharcoalDepth)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
                 .background(
                     Capsule()
-                        .fill(isSelected ? VitalPalette.zenJetStone : VitalPalette.driftFogVeil)
+                        .fill(isSelected ? VitalPalette.surgeXPGold : VitalPalette.driftFogVeil)
                 )
         }
         .buttonStyle(.plain)

@@ -17,11 +17,12 @@ struct ZenRootGarden: View {
     
     @EnvironmentObject var vault: VitalVault
     @StateObject private var mind = ZenRootMind()
+    @State private var isSpotTemplatesExpanded = false
     
     var body: some View {
         NavigationStack {
             ZStack {
-                DriftGlowAtmosphere(preset: .zenStone)
+                GoldBlackGradientBackground()
                     .ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {
@@ -36,6 +37,10 @@ struct ZenRootGarden: View {
                         
                         // ── Statistics ──
                         statsCard
+                            .padding(.horizontal, 20)
+                        
+                        // ── Quick Add Spots (templates for Add Spot) ──
+                        spotTemplatesCard
                             .padding(.horizontal, 20)
                         
                         // ── Settings ──
@@ -54,6 +59,7 @@ struct ZenRootGarden: View {
                     }
                     .padding(.top, 8)
                 }
+                .scrollContentBackground(.hidden)
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.large)
@@ -64,6 +70,11 @@ struct ZenRootGarden: View {
             .sheet(isPresented: $mind.showConfigEditor) {
                 ZenConfigEditorSheet(mind: mind)
                     .presentationDetents([.large])
+            }
+            .sheet(isPresented: $mind.showTemplateEditor) {
+                TemplateEditorSheet(mind: mind, template: mind.templateToEdit)
+                    .presentationDetents([.medium, .large])
+                    .onDisappear { mind.templateToEdit = nil }
             }
             .sheet(isPresented: $mind.showExportShare) {
                 if let data = mind.exportData {
@@ -341,6 +352,125 @@ struct ZenRootGarden: View {
                 .fill(VitalPalette.driftSnowField.opacity(0.85))
         )
         .shadow(color: VitalPalette.driftShadowMist, radius: 6, x: 0, y: 3)
+    }
+    
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // MARK: – Spot Templates Card (Quick Add)
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
+    private var spotTemplatesCard: some View {
+        VStack(spacing: 14) {
+            HStack {
+                Text("Quick Add Spots")
+                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                    .foregroundColor(VitalPalette.zenJetStone)
+                Spacer()
+                Button {
+                    mind.startAddTemplate()
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add")
+                    }
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .foregroundColor(VitalPalette.surgeXPGold)
+                }
+            }
+            
+            Text("Templates shown in Add Spot sheet")
+                .font(.system(size: 13, design: .rounded))
+                .foregroundColor(VitalPalette.zenAshWhisper)
+            
+            if mind.templates.isEmpty {
+                Text("No templates yet. Tap Add to create one.")
+                    .font(.system(size: 14, design: .rounded))
+                    .foregroundColor(VitalPalette.zenSilentStone)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 20)
+            } else {
+                VStack(spacing: 8) {
+                    ForEach(Array(mind.templates.prefix(isSpotTemplatesExpanded ? mind.templates.count : 4))) { template in
+                        templateRow(template)
+                    }
+                    if mind.templates.count > 4 {
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.25)) {
+                                isSpotTemplatesExpanded.toggle()
+                            }
+                        } label: {
+                            HStack(spacing: 4) {
+                                Text(isSpotTemplatesExpanded ? "Show less" : "Show more (\(mind.templates.count - 4))")
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                Image(systemName: isSpotTemplatesExpanded ? "chevron.up" : "chevron.down")
+                                    .font(.system(size: 12, weight: .semibold))
+                            }
+                            .foregroundColor(VitalPalette.surgeXPGold)
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.top, 4)
+                    }
+                }
+            }
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(VitalPalette.driftSnowField.opacity(0.85))
+        )
+        .shadow(color: VitalPalette.driftShadowMist, radius: 6, x: 0, y: 3)
+    }
+    
+    private func templateRow(_ template: SparkTemplateSeed) -> some View {
+        HStack(spacing: 12) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(template.kind.tintColor.opacity(0.3))
+                    .frame(width: 44, height: 44)
+                Image(systemName: template.iconName ?? template.kind.icon)
+                    .font(.system(size: 18))
+                    .foregroundColor(VitalPalette.zenJetStone)
+            }
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(template.title)
+                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .foregroundColor(VitalPalette.zenJetStone)
+                Text("\(template.defaultDurationMin) min • \(template.kind.title)")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(VitalPalette.zenAshWhisper)
+            }
+            
+            Spacer()
+            
+            Button {
+                mind.toggleTemplatePin(template)
+            } label: {
+                Image(systemName: template.isPinned ? "pin.fill" : "pin.slash")
+                    .font(.system(size: 16))
+                    .foregroundColor(template.isPinned ? VitalPalette.surgeXPGold : VitalPalette.zenSilentStone)
+            }
+            
+            Button {
+                mind.startEditTemplate(template)
+            } label: {
+                Image(systemName: "pencil.circle")
+                    .font(.system(size: 20))
+                    .foregroundColor(VitalPalette.zenCharcoalDepth)
+            }
+            
+            Button {
+                mind.deleteTemplate(id: template.id)
+            } label: {
+                Image(systemName: "trash.circle")
+                    .font(.system(size: 20))
+                    .foregroundColor(VitalPalette.pulseOverloadRust)
+            }
+        }
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(VitalPalette.driftFogVeil.opacity(0.8))
+        )
     }
     
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -735,6 +865,165 @@ struct ZenConfigEditorSheet: View {
             )
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - ✏️ TemplateEditorSheet — Add/Edit spot template
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+struct TemplateEditorSheet: View {
+    @ObservedObject var mind: ZenRootMind
+    let template: SparkTemplateSeed?
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var title: String = ""
+    @State private var durationMin: Int = 30
+    @State private var kind: SpotKind = .generic
+    @State private var iconName: String?
+    @State private var isPinned: Bool = true
+    
+    private let durationChips = [15, 20, 30, 45, 60, 90, 120]
+    private let commonIcons = ["figure.walk", "figure.run", "cup.and.saucer.fill", "laptopcomputer", "person.2.fill", "cart.fill", "car.fill", "book.fill", "phone.fill", "bed.double.fill", "figure.yoga", "circle.fill"]
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Title
+                    VStack(alignment: .center, spacing: 8) {
+                        Text("Name")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(VitalPalette.zenCharcoalDepth)
+                        TextField("Spot name", text: $title)
+                            .font(.system(size: 16, design: .rounded))
+                            .padding(12)
+                            .background(RoundedRectangle(cornerRadius: 10).fill(VitalPalette.driftFogVeil))
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    // Duration
+                    VStack(alignment: .center, spacing: 8) {
+                        Text("Default duration")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(VitalPalette.zenCharcoalDepth)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                ForEach(durationChips, id: \.self) { min in
+                                    ChipButton(title: "\(min)m", isSelected: durationMin == min) {
+                                        durationMin = min
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    // Kind
+                    VStack(alignment: .center, spacing: 8) {
+                        Text("Type")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(VitalPalette.zenCharcoalDepth)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                ForEach(SpotKind.allCases) { k in
+                                    ChipButton(title: k.title, isSelected: kind == k) {
+                                        kind = k
+                                        if iconName == nil { iconName = k.icon }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    // Icon (optional)
+                    VStack(alignment: .center, spacing: 8) {
+                        Text("Icon (optional)")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(VitalPalette.zenCharcoalDepth)
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 10) {
+                            ForEach(commonIcons, id: \.self) { icon in
+                                Button {
+                                    iconName = icon
+                                } label: {
+                                    Image(systemName: icon)
+                                        .font(.system(size: 20))
+                                        .foregroundColor(iconName == icon ? Color(red: 0.08, green: 0.06, blue: 0.04) : VitalPalette.zenCharcoalDepth)
+                                        .frame(width: 44, height: 44)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(iconName == icon ? VitalPalette.surgeXPGold : VitalPalette.driftFogVeil)
+                                        )
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    // Show in Add Spot
+                    Toggle(isOn: $isPinned) {
+                        Text("Show in Add Spot")
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundColor(VitalPalette.zenJetStone)
+                    }
+                    .tint(VitalPalette.surgeXPGold)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(20)
+            }
+            .navigationTitle(template == nil ? "New Template" : "Edit Template")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                        .foregroundColor(VitalPalette.zenCharcoalDepth)
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        saveTemplate()
+                        dismiss()
+                    }
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(VitalPalette.surgeXPGold)
+                    .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)
+                }
+            }
+            .onAppear {
+                if let t = template {
+                    title = t.title
+                    durationMin = t.defaultDurationMin
+                    kind = t.kind
+                    iconName = t.iconName
+                    isPinned = t.isPinned
+                }
+            }
+        }
+    }
+    
+    private func saveTemplate() {
+        let trimmed = title.trimmingCharacters(in: .whitespaces)
+        guard !trimmed.isEmpty else { return }
+        
+        if let t = template {
+            mind.updateTemplate(id: t.id) { template in
+                template.title = trimmed
+                template.defaultDurationMin = durationMin
+                template.kind = kind
+                template.iconName = iconName
+                template.isPinned = isPinned
+            }
+        } else {
+            let new = SparkTemplateSeed(
+                title: trimmed,
+                defaultDurationMin: durationMin,
+                kind: kind,
+                iconName: iconName,
+                isPinned: isPinned
+            )
+            mind.addTemplate(new)
+        }
     }
 }
 

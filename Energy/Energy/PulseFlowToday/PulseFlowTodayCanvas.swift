@@ -23,11 +23,9 @@ struct PulseFlowTodayCanvas: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
-                // ── Background ──
-                DriftGlowAtmosphere(preset: .sunrise)
+                GoldBlackGradientBackground()
                     .ignoresSafeArea()
                 
-                // ── Main scrollable content ──
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 20) {
                         // ── Mode Switcher ──
@@ -69,6 +67,7 @@ struct PulseFlowTodayCanvas: View {
                     }
                     .padding(.top, 8)
                 }
+                .scrollContentBackground(.hidden)
                 .scrollDismissesKeyboard(.interactively)
                 
                 // ── Undo Toast ──
@@ -124,7 +123,9 @@ struct PulseFlowTodayCanvas: View {
                     .presentationDetents([.medium])
             }
         }
-        .onAppear { mind.loadToday() }
+        .onAppear {
+            DispatchQueue.main.async { mind.loadToday() }
+        }
     }
     
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -153,7 +154,7 @@ struct PulseFlowTodayCanvas: View {
                     .background(
                         Capsule().fill(
                             mind.currentRhythm == rhythm
-                            ? VitalPalette.zenJetStone
+                            ? VitalPalette.chipSelectedBg
                             : VitalPalette.driftSnowField.opacity(0.7)
                         )
                     )
@@ -290,7 +291,7 @@ struct PulseFlowTodayCanvas: View {
                     .padding(.horizontal, 14)
                     .padding(.vertical, 7)
                     .background(
-                        Capsule().fill(VitalPalette.zenJetStone)
+                        Capsule().fill(VitalPalette.chipSelectedBg)
                     )
             }
             .padding(14)
@@ -482,7 +483,7 @@ struct PulseFlowTodayCanvas: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
             .background(
-                Capsule().fill(VitalPalette.zenJetStone)
+                Capsule().fill(VitalPalette.chipSelectedBg)
             )
             .padding(.horizontal, 20)
             .padding(.bottom, 95)
@@ -503,10 +504,9 @@ struct SpotCardView: View {
     let currentZone: DayZone
     
     var body: some View {
-        ZStack(alignment: .trailing) {
+        HStack(spacing: 0) {
             // Tappable card content
             HStack(spacing: 12) {
-                // Kind icon
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(currentZone.tintColor.opacity(0.4))
@@ -517,7 +517,6 @@ struct SpotCardView: View {
                         .foregroundColor(VitalPalette.zenJetStone)
                 }
                 
-                // Info
                 VStack(alignment: .leading, spacing: 3) {
                     Text(spot.title)
                         .font(.system(size: 15, weight: .semibold, design: .rounded))
@@ -543,7 +542,6 @@ struct SpotCardView: View {
                 
                 Spacer()
                 
-                // Total load badge
                 Text("\(spot.computedLoadMin)m")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
                     .foregroundColor(VitalPalette.zenAshWhisper)
@@ -554,23 +552,23 @@ struct SpotCardView: View {
                     )
             }
             .padding(12)
-            .padding(.trailing, 36) // Space for delete button
             .contentShape(Rectangle())
             .onTapGesture {
                 onTap()
             }
             
-            // Delete button (overlay, captures taps first)
+            // Delete button — separate from card content so taps are not captured
             Button {
                 onDelete()
             } label: {
                 Image(systemName: "trash.circle.fill")
-                    .font(.system(size: 24))
+                    .font(.system(size: 26))
                     .foregroundColor(VitalPalette.zenAshWhisper)
                     .symbolRenderingMode(.hierarchical)
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .padding(8)
         }
         .background(
             RoundedRectangle(cornerRadius: 14)
@@ -638,7 +636,7 @@ struct SparkSpotCreatorSheet: View {
             ScrollView {
                 VStack(spacing: 24) {
                     // ── Quick Add from Templates ──
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .center, spacing: 12) {
                         Text("Quick Add")
                             .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundColor(VitalPalette.zenJetStone)
@@ -653,6 +651,7 @@ struct SparkSpotCreatorSheet: View {
                                 )
                             }
                         }
+                        .frame(maxWidth: .infinity)
                         
                         LazyVGrid(
                             columns: [GridItem(.flexible()), GridItem(.flexible())],
@@ -666,7 +665,7 @@ struct SparkSpotCreatorSheet: View {
                                     HStack(spacing: 8) {
                                         Image(systemName: template.iconName ?? template.kind.icon)
                                             .font(.system(size: 14))
-                                        VStack(alignment: .leading, spacing: 1) {
+                                        VStack(alignment: .center, spacing: 1) {
                                             Text(template.title)
                                                 .font(.system(size: 13, weight: .medium, design: .rounded))
                                                 .lineLimit(1)
@@ -677,7 +676,7 @@ struct SparkSpotCreatorSheet: View {
                                     }
                                     .foregroundColor(VitalPalette.zenJetStone)
                                     .padding(10)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(VitalPalette.driftFogVeil)
@@ -692,7 +691,7 @@ struct SparkSpotCreatorSheet: View {
                     Divider().padding(.horizontal, 20)
                     
                     // ── Custom Spot Form ──
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .center, spacing: 12) {
                         Button {
                             withAnimation { showCustomForm.toggle() }
                         } label: {
@@ -708,6 +707,23 @@ struct SparkSpotCreatorSheet: View {
                         
                         if showCustomForm {
                             VStack(spacing: 14) {
+                                // Zone selector (Morning / Daytime / Evening)
+                                VStack(alignment: .center, spacing: 8) {
+                                    Text("Time of day")
+                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                        .foregroundColor(VitalPalette.zenCharcoalDepth)
+                                    HStack(spacing: 8) {
+                                        ForEach(DayZone.allCases) { zone in
+                                            ChipButton(
+                                                title: zone.title,
+                                                isSelected: selectedZone == zone,
+                                                action: { selectedZone = zone }
+                                            )
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                                
                                 // Title field
                                 TextField("Spot name", text: $customTitle)
                                     .font(.system(size: 16, design: .rounded))
@@ -761,7 +777,7 @@ struct SparkSpotCreatorSheet: View {
                                         .padding(.vertical, 14)
                                         .background(
                                             RoundedRectangle(cornerRadius: 12)
-                                                .fill(VitalPalette.zenJetStone)
+                                                .fill(VitalPalette.chipSelectedBg)
                                         )
                                 }
                                 .disabled(customTitle.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -772,6 +788,7 @@ struct SparkSpotCreatorSheet: View {
                     }
                     .padding(.horizontal, 20)
                 }
+                .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
             }
             .scrollDismissesKeyboard(.interactively)

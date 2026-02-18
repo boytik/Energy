@@ -47,9 +47,7 @@ struct AuraSplashGateway: View {
     
     var body: some View {
         ZStack {
-            // ── Background ──
-            DriftGlowAtmosphere(preset: .auraGateway)
-                .ignoresSafeArea()
+            // ── Background from VitalFlowRoot (gold-black gradient) ──
             
             // ── Shimmer overlay ──
             AuraShimmerOverlay()
@@ -154,7 +152,7 @@ struct AuraSplashGateway: View {
     private var logoView: some View {
         ZStack {
             Circle()
-                .fill(VitalPalette.zenJetStone)
+                .fill(VitalPalette.chipSelectedBg)
                 .frame(width: 72, height: 72)
             
             Image(systemName: "bolt.heart.fill")
@@ -348,6 +346,9 @@ struct AuraFlowGateway: View {
     
     var body: some View {
         ZStack {
+            GoldBlackGradientBackground()
+                .ignoresSafeArea()
+            
             switch phase {
             case .splash:
                 AuraSplashGateway {
@@ -394,7 +395,7 @@ struct SparkJourneyPlaceholder: View {
     
     var body: some View {
         ZStack {
-            DriftGlowAtmosphere(preset: .auraGateway)
+            GoldBlackGradientBackground()
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
@@ -410,7 +411,7 @@ struct SparkJourneyPlaceholder: View {
                         .foregroundColor(VitalPalette.glowZincSunrise)
                         .padding(.horizontal, 32)
                         .padding(.vertical, 14)
-                        .background(VitalPalette.zenJetStone)
+                        .background(VitalPalette.chipSelectedBg)
                         .clipShape(Capsule())
                 }
             }
@@ -424,7 +425,7 @@ struct VitalHubPlaceholder: View {
     
     var body: some View {
         ZStack {
-            DriftGlowAtmosphere(preset: .sunrise)
+            GoldBlackGradientBackground()
                 .ignoresSafeArea()
             
             VStack(spacing: 16) {

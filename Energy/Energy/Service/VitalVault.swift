@@ -49,13 +49,17 @@ final class VitalVault: ObservableObject {
     
     /// Mutate state and auto-save. ALL writes go through here.
     /// Usage: vault.commit { $0.config.defaultRhythm = .light }
-    /// State update deferred to avoid "Publishing changes from within view updates".
+    /// State update is synchronous on main to avoid race when ensureTodayPlan + addSpot run back-to-back.
     func commit(_ mutation: (inout VitalAppState) -> Void) {
         var copy = state
         mutation(&copy)
         persistToDisk(copy)
-        DispatchQueue.main.async { [weak self] in
-            self?.state = copy
+        if Thread.isMainThread {
+            state = copy
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.state = copy
+            }
         }
     }
     

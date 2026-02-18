@@ -28,27 +28,27 @@ enum VitalPalette {
     /// Medium card surface
     static let driftCloudLayer     = Color(red: 0.749, green: 0.761, blue: 0.765)
     
-    /// Light card / sheet background
-    static let driftFogVeil        = Color(red: 0.910, green: 0.918, blue: 0.922)
+    /// Light card / sheet background (dark: darker grey)
+    static let driftFogVeil        = Color(red: 0.22, green: 0.22, blue: 0.24)
     
-    /// Near-white surface for elevated cards
-    static let driftSnowField      = Color(red: 0.957, green: 0.961, blue: 0.965)
+    /// Near-white surface for elevated cards (dark: dark grey card)
+    static let driftSnowField      = Color(red: 0.16, green: 0.16, blue: 0.18)
     
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // MARK: – Text & Buttons (RAL 9005 Jet Black)
+    // MARK: – Text & Buttons (dark theme)
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     
     /// Primary text, primary buttons
-    static let zenJetStone         = Color(red: 0.078, green: 0.078, blue: 0.078)
+    static let zenJetStone         = Color(red: 0.96, green: 0.96, blue: 0.98)
     
     /// Secondary text, icons
-    static let zenCharcoalDepth    = Color(red: 0.220, green: 0.220, blue: 0.220)
+    static let zenCharcoalDepth    = Color(red: 0.82, green: 0.82, blue: 0.84)
     
     /// Tertiary / placeholder text
-    static let zenAshWhisper       = Color(red: 0.467, green: 0.467, blue: 0.467)
+    static let zenAshWhisper       = Color(red: 0.62, green: 0.62, blue: 0.64)
     
     /// Disabled text / subtle dividers
-    static let zenSilentStone      = Color(red: 0.620, green: 0.620, blue: 0.620)
+    static let zenSilentStone      = Color(red: 0.48, green: 0.48, blue: 0.50)
     
     
     /// Day is comfortable — muted sage green
@@ -86,8 +86,11 @@ enum VitalPalette {
     /// Pure white for overlays / modal sheets
     static let breathPureLight     = Color.white
     
-    /// Card shadow color (black at 12% opacity)
-    static let driftShadowMist     = Color.black.opacity(0.12)
+    /// Card shadow color (dark: stronger shadow)
+    static let driftShadowMist     = Color.black.opacity(0.35)
+    
+    /// Selected chip/button background (dark with golden tint)
+    static let chipSelectedBg      = Color(red: 0.28, green: 0.24, blue: 0.10)
 }
 
 // MARK: - ⚡ EnergyRhythm — The three energy modes (Light / Normal / Intense)
@@ -221,6 +224,18 @@ enum SpotKind: Int, Codable, CaseIterable, Identifiable {
         case .errand:  return "cart.fill"
         case .rest:    return "cup.and.saucer.fill"
         case .travel:  return "car.fill"
+        }
+    }
+    
+    var tintColor: Color {
+        switch self {
+        case .generic: return VitalPalette.zenAshWhisper
+        case .work:    return VitalPalette.pulseCautionAmber
+        case .meeting: return VitalPalette.bloomLevelViolet
+        case .sport:   return VitalPalette.pulseComfortSage
+        case .errand:  return VitalPalette.rhythmDaytimeSand
+        case .rest:    return VitalPalette.rhythmEveningDusk
+        case .travel:  return VitalPalette.surgeXPGold
         }
     }
 }

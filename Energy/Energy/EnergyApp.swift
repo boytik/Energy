@@ -28,6 +28,7 @@ struct c10App: App {
         WindowGroup {
             VitalFlowRoot()
                 .environmentObject(vault)
+                .preferredColorScheme(.dark)
         }
     }
 }
@@ -50,6 +51,9 @@ struct VitalFlowRoot: View {
     
     var body: some View {
         ZStack {
+            GoldBlackGradientBackground()
+                .ignoresSafeArea()
+            
             switch phase {
             case .splash:
                 AuraSplashGateway {

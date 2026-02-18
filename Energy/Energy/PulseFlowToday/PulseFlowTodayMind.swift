@@ -172,6 +172,7 @@ final class PulseFlowTodayMind: ObservableObject {
     
     /// Add spot from template
     func addSpotFromTemplate(_ template: SparkTemplateSeed, zone: DayZone = .daytime) {
+        _ = vault.ensureTodayPlan()
         var spot = template.toSpot(zone: zone, bufferDefault: config.defaultBufferBetweenMin)
         spot.travelBeforeMin = config.defaultTravelMin
         
@@ -184,6 +185,7 @@ final class PulseFlowTodayMind: ObservableObject {
     
     /// Add spot manually
     func addCustomSpot(title: String, durationMin: Int, kind: SpotKind, zone: DayZone) {
+        _ = vault.ensureTodayPlan()
         let spot = SpotCapsule(
             title: title,
             kind: kind,

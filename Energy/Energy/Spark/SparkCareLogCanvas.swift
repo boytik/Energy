@@ -21,7 +21,7 @@ struct SparkCareLogCanvas: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                DriftGlowAtmosphere(preset: .sparkField)
+                GoldBlackGradientBackground()
                     .ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {

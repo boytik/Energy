@@ -30,6 +30,8 @@ final class ZenRootMind: ObservableObject {
     // UI state
     @Published var showAvatarPicker = false
     @Published var showConfigEditor = false
+    @Published var showTemplateEditor = false
+    @Published var templateToEdit: SparkTemplateSeed?
     @Published var showResetConfirmation = false
     @Published var showExportShare = false
     @Published var showStatsShare = false
@@ -210,6 +212,44 @@ final class ZenRootMind: ObservableObject {
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // MARK: – Share Stats
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // MARK: – Spot Templates (Quick Add)
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
+    var templates: [SparkTemplateSeed] {
+        vault.state.templates
+    }
+    
+    var pinnedTemplates: [SparkTemplateSeed] {
+        vault.state.templates.filter(\.isPinned)
+    }
+    
+    func addTemplate(_ template: SparkTemplateSeed) {
+        vault.addTemplate(template)
+    }
+    
+    func updateTemplate(id: UUID, mutation: (inout SparkTemplateSeed) -> Void) {
+        vault.updateTemplate(id: id, mutation: mutation)
+    }
+    
+    func deleteTemplate(id: UUID) {
+        vault.deleteTemplate(id: id)
+    }
+    
+    func toggleTemplatePin(_ template: SparkTemplateSeed) {
+        vault.updateTemplate(id: template.id) { $0.isPinned.toggle() }
+    }
+    
+    func startAddTemplate() {
+        templateToEdit = nil
+        showTemplateEditor = true
+    }
+    
+    func startEditTemplate(_ template: SparkTemplateSeed) {
+        templateToEdit = template
+        showTemplateEditor = true
+    }
     
     var shareStatsText: String {
         """

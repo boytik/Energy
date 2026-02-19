@@ -253,7 +253,7 @@ final class ZenRootMind: ObservableObject {
     
     var shareStatsText: String {
         """
-        ⚡ My c10 Energy Route Stats
+        ⚡ My Tempo Map Energy Route Stats
         
         \(levelTitle) • \(xpDisplayText)
         \(streakText ?? "No active streak")

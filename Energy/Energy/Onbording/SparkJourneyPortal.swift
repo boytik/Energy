@@ -102,7 +102,7 @@ struct SparkJourneyPortal: View {
                 
                 // Title
                 VStack(spacing: 8) {
-                    Text("Welcome to c10")
+                    Text("Welcome to Map Energy ")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(VitalPalette.zenJetStone)
                     

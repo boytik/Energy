@@ -24,7 +24,6 @@
 		3EBCC3EE2F45CEA100CD7D45 /* VitalVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3ED2F45CEA100CD7D45 /* VitalVault.swift */; };
 		3EBCC3F02F45CEFC00CD7D45 /* CoreOverloadEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3EF2F45CEFC00CD7D45 /* CoreOverloadEngine.swift */; };
 		3EBCC3F32F45CF6500CD7D45 /* DriftGlowAtmosphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3F22F45CF6500CD7D45 /* DriftGlowAtmosphere.swift */; };
-		3EBCC4A02F4600000CD7D45 /* GoldBlackGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */; };
 		3EBCC3F52F45CFDF00CD7D45 /* AuraSplashGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3F42F45CFDF00CD7D45 /* AuraSplashGateway.swift */; };
 		3EBCC3FA2F45D14400CD7D45 /* VitalHubShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3F92F45D14400CD7D45 /* VitalHubShell.swift */; };
 		3EBCC3FD2F45D18800CD7D45 /* SparkJourneyPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC3FC2F45D18800CD7D45 /* SparkJourneyPortal.swift */; };
@@ -33,13 +32,14 @@
 		3EBCC4032F45D2A100CD7D45 /* PulseFlowTodayMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4012F45D2A100CD7D45 /* PulseFlowTodayMind.swift */; };
 		3EBCC4072F45D43500CD7D45 /* BloomJournalMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4062F45D43500CD7D45 /* BloomJournalMind.swift */; };
 		3EBCC4082F45D43500CD7D45 /* BloomJournalGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4052F45D43500CD7D45 /* BloomJournalGallery.swift */; };
-		3EBCC4132F45D50000CD7D45 /* VitalInsightsCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4122F45D50000CD7D45 /* VitalInsightsCanvas.swift */; };
 		3EBCC4112F45D4D000CD7D45 /* ZenRootMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4102F45D4D000CD7D45 /* ZenRootMind.swift */; };
 		3EBCC4122F45D4D000CD7D45 /* ZenRootGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC40F2F45D4D000CD7D45 /* ZenRootGarden.swift */; };
+		3EBCC4132F45D50000CD7D45 /* VitalInsightsCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4122F45D50000CD7D45 /* VitalInsightsCanvas.swift */; };
+		3EBCC4A02F4600000CD7D45 /* GoldBlackGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3EBCC3BC2F45CA7600CD7D45 /* Energy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Energy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EBCC3BC2F45CA7600CD7D45 /* Tempo Map Energy Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tempo Map Energy Route.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EBCC3CA2F45CBA600CD7D45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EBCC3CB2F45CBA600CD7D45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3EBCC3CC2F45CBA600CD7D45 /* EnergyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyApp.swift; sourceTree = "<group>"; };
@@ -57,7 +57,6 @@
 		3EBCC3ED2F45CEA100CD7D45 /* VitalVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalVault.swift; sourceTree = "<group>"; };
 		3EBCC3EF2F45CEFC00CD7D45 /* CoreOverloadEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreOverloadEngine.swift; sourceTree = "<group>"; };
 		3EBCC3F22F45CF6500CD7D45 /* DriftGlowAtmosphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftGlowAtmosphere.swift; sourceTree = "<group>"; };
-		3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldBlackGradientBackground.swift; sourceTree = "<group>"; };
 		3EBCC3F42F45CFDF00CD7D45 /* AuraSplashGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraSplashGateway.swift; sourceTree = "<group>"; };
 		3EBCC3F92F45D14400CD7D45 /* VitalHubShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalHubShell.swift; sourceTree = "<group>"; };
 		3EBCC3FB2F45D18800CD7D45 /* SparkJourneyMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkJourneyMind.swift; sourceTree = "<group>"; };
@@ -66,9 +65,10 @@
 		3EBCC4012F45D2A100CD7D45 /* PulseFlowTodayMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseFlowTodayMind.swift; sourceTree = "<group>"; };
 		3EBCC4052F45D43500CD7D45 /* BloomJournalGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomJournalGallery.swift; sourceTree = "<group>"; };
 		3EBCC4062F45D43500CD7D45 /* BloomJournalMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomJournalMind.swift; sourceTree = "<group>"; };
-		3EBCC4122F45D50000CD7D45 /* VitalInsightsCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalInsightsCanvas.swift; sourceTree = "<group>"; };
 		3EBCC40F2F45D4D000CD7D45 /* ZenRootGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZenRootGarden.swift; sourceTree = "<group>"; };
 		3EBCC4102F45D4D000CD7D45 /* ZenRootMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZenRootMind.swift; sourceTree = "<group>"; };
+		3EBCC4122F45D50000CD7D45 /* VitalInsightsCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalInsightsCanvas.swift; sourceTree = "<group>"; };
+		3EBCC4A12F4600000CD7D45 /* GoldBlackGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldBlackGradientBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 		3EBCC3BD2F45CA7600CD7D45 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3EBCC3BC2F45CA7600CD7D45 /* Energy.app */,
+				3EBCC3BC2F45CA7600CD7D45 /* Tempo Map Energy Route.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,14 +213,6 @@
 			path = Bloom;
 			sourceTree = "<group>";
 		};
-		3EBCC4112F45D4F000CD7D45 /* Insights */ = {
-			isa = PBXGroup;
-			children = (
-				3EBCC4122F45D50000CD7D45 /* VitalInsightsCanvas.swift */,
-			);
-			path = Insights;
-			sourceTree = "<group>";
-		};
 		3EBCC40E2F45D4C900CD7D45 /* Zen */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,12 +222,20 @@
 			path = Zen;
 			sourceTree = "<group>";
 		};
+		3EBCC4112F45D4F000CD7D45 /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+				3EBCC4122F45D50000CD7D45 /* VitalInsightsCanvas.swift */,
+			);
+			path = Insights;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3EBCC3BB2F45CA7600CD7D45 /* Energy */ = {
+		3EBCC3BB2F45CA7600CD7D45 /* Tempo Map Energy Route */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3EBCC3C72F45CA7700CD7D45 /* Build configuration list for PBXNativeTarget "Energy" */;
+			buildConfigurationList = 3EBCC3C72F45CA7700CD7D45 /* Build configuration list for PBXNativeTarget "Tempo Map Energy Route" */;
 			buildPhases = (
 				3EBCC3B82F45CA7600CD7D45 /* Sources */,
 				3EBCC3B92F45CA7600CD7D45 /* Frameworks */,
@@ -245,11 +245,11 @@
 			);
 			dependencies = (
 			);
-			name = Energy;
+			name = "Tempo Map Energy Route";
 			packageProductDependencies = (
 			);
 			productName = Energy;
-			productReference = 3EBCC3BC2F45CA7600CD7D45 /* Energy.app */;
+			productReference = 3EBCC3BC2F45CA7600CD7D45 /* Tempo Map Energy Route.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3EBCC3B72F45CA7600CD7D45 /* Build configuration list for PBXProject "Energy" */;
+			buildConfigurationList = 3EBCC3B72F45CA7600CD7D45 /* Build configuration list for PBXProject "Tempo Map Energy Route" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -281,7 +281,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3EBCC3BB2F45CA7600CD7D45 /* Energy */,
+				3EBCC3BB2F45CA7600CD7D45 /* Tempo Map Energy Route */,
 			);
 		};
 /* End PBXProject section */
@@ -534,7 +534,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3EBCC3B72F45CA7600CD7D45 /* Build configuration list for PBXProject "Energy" */ = {
+		3EBCC3B72F45CA7600CD7D45 /* Build configuration list for PBXProject "Tempo Map Energy Route" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3EBCC3C52F45CA7700CD7D45 /* Debug */,
@@ -543,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3EBCC3C72F45CA7700CD7D45 /* Build configuration list for PBXNativeTarget "Energy" */ = {
+		3EBCC3C72F45CA7700CD7D45 /* Build configuration list for PBXNativeTarget "Tempo Map Energy Route" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3EBCC3C82F45CA7700CD7D45 /* Debug */,

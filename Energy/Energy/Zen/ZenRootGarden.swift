@@ -601,7 +601,7 @@ struct ZenRootGarden: View {
     
     private var appInfoFooter: some View {
         VStack(spacing: 6) {
-            Text("c10 — Energy Route")
+            Text("Tempo Map Energy Route")
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundColor(.white)
             

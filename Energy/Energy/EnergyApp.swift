@@ -19,7 +19,7 @@ private final class PortraitLockDelegate: NSObject, UIApplicationDelegate {
 // All state lives in VitalVault (singleton, JSON persistence).
 
 @main
-struct c10App: App {
+struct TempoMapEnergyRouteApp: App {
     
     @UIApplicationDelegateAdaptor(PortraitLockDelegate.self) private var portraitLock
     @StateObject private var vault = VitalVault.shared

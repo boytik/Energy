@@ -101,7 +101,7 @@ struct AuraSplashGateway: View {
                 
                 // ── App Title ──
                 VStack(spacing: 8) {
-                    Text("c10")
+                    Text("Map Energy Route")
                         .font(.system(size: 42, weight: .bold, design: .rounded))
                         .foregroundColor(VitalPalette.zenJetStone)
                     
